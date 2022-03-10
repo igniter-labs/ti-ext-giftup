@@ -17,7 +17,7 @@
   "extra": {
     "tastyigniter-extension": {
       "code": "igniterlabs.giftup",
-      "name": "Gift Up! Gift Cards for TastyIgniter",
+      "name": "Gift Up! Gift Cards",
       "icon": {
         "class": "fas fa-gift-card",
         "backgroundColor": "#fdc904",
