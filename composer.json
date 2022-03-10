@@ -19,7 +19,7 @@
       "code": "igniterlabs.giftup",
       "name": "Gift Up! Gift Cards",
       "icon": {
-        "class": "fas fa-gift-card",
+        "class": "fas fa-gift",
         "backgroundColor": "#fdc904",
         "color": "#000000"
       },
