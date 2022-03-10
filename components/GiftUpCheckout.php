@@ -14,47 +14,48 @@ class GiftUpCheckout extends BaseComponent
             'companyId' => [
                 'label' => 'Your company ID. Leave blank to use the default company ID',
                 'type' => 'text',
-                'validationRule' => 'required|string',
+                'validationRule' => 'string',
             ],
             'productId' => [
                 'label' => 'Product ID',
                 'type' => 'text',
-                'validationRule' => 'required|string',
+                'validationRule' => 'string',
             ],
             'groupId' => [
                 'label' => 'Group ID',
                 'type' => 'text',
-                'validationRule' => 'required|string',
+                'validationRule' => 'string',
             ],
             'language' => [
                 'label' => 'Force a specific language',
                 'type' => 'text',
                 'default' => 'en-GB',
-                'validationRule' => 'required|string',
+                'placeholder' => 'en-GB',
+                'validationRule' => 'string',
             ],
             'purchaserName' => [
                 'label' => 'Purchaser\'s name',
                 'type' => 'text',
-                'validationRule' => 'required|string',
+                'validationRule' => 'string',
             ],
             'purchaserEmail' => [
                 'label' => 'Purchaser\'s email',
                 'type' => 'text',
-                'validationRule' => 'required|email',
+                'validationRule' => 'string',
             ],
             'recipientName' => [
                 'label' => 'Recipient\'s name',
                 'type' => 'text',
-                'validationRule' => 'required|string',
+                'validationRule' => 'string',
             ],
             'recipientEmail' => [
                 'label' => 'Recipient\'s email',
                 'type' => 'text',
-                'validationRule' => 'required|email',
+                'validationRule' => 'string',
             ],
             'step' => [
                 'label' => 'The default checkout step to display',
-                'type' => 'text',
+                'type' => 'select',
                 'default' => 'details',
                 'options' => [
                     'details' => 'details',
@@ -76,7 +77,7 @@ class GiftUpCheckout extends BaseComponent
             'promoCode' => [
                 'label' => 'Automatically apply a promo code',
                 'type' => 'text',
-                'validationRule' => 'required|string',
+                'validationRule' => 'string',
             ],
             'hideArtwork' => [
                 'label' => 'Whether to hide your artwork or not',
@@ -105,7 +106,7 @@ class GiftUpCheckout extends BaseComponent
             'customValueAmount' => [
                 'label' => 'The custom value amount to display',
                 'type' => 'text',
-                'validationRule' => 'required|string',
+                'validationRule' => 'string',
             ],
         ];
     }
@@ -121,11 +122,11 @@ class GiftUpCheckout extends BaseComponent
     protected function loadOptions()
     {
         return new GiftUpOptions([
-            'companyId' => $this->property('companyId', Settings::getCompanyId()),
+            'companyId' => $this->property('companyId') ?: Settings::getCompanyId(),
             'domain' => $this->property('domain'),
             'product' => $this->property('productId'),
             'group' => $this->property('groupId'),
-            'language' => $this->property('language'),
+            'language' => $this->property('language') ?: 'en-GB',
             'purchaserName' => $this->property('purchaserName'),
             'purchaserEmail' => $this->property('purchaserEmail'),
             'recipientName' => $this->property('recipientName'),

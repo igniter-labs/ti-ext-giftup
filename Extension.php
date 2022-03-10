@@ -53,7 +53,7 @@ class Extension extends BaseExtension
     {
         return [
             \IgniterLabs\GiftUp\Components\GiftUpCheckout::class => [
-                'code' => 'giftupcheckout',
+                'code' => 'giftUpCheckout',
                 'name' => 'lang:igniterlabs.giftup::default.text_component',
                 'description' => 'lang:igniterlabs.giftup::default.help_component',
             ],
