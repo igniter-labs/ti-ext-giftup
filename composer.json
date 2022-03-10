@@ -1,0 +1,29 @@
+{
+  "name": "igniterlabs/ti-ext-giftup",
+  "type": "tastyigniter-extension",
+  "description": "Sell and accept gift cards on your TastyIgniter website using Gift Up!",
+  "keywords": [
+    "tastyigniter",
+    "giftup",
+    "gift-card",
+    "giftcard"
+  ],
+  "license": "MIT",
+  "authors": [
+    {
+      "name": "Igniter Labs Team"
+    }
+  ],
+  "extra": {
+    "tastyigniter-extension": {
+      "code": "igniterlabs.giftup",
+      "name": "Gift Up! Gift Cards for TastyIgniter",
+      "icon": {
+        "class": "fas fa-gift-card",
+        "backgroundColor": "#fdc904",
+        "color": "#000000"
+      },
+      "homepage": "https://tastyigniter.com/marketplace/item/igniterlabs-giftup"
+    }
+  }
+}
