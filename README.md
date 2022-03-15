@@ -1,12 +1,16 @@
-With [Gift Up!](https://www.giftup.com/), you can sell and accept your own gift cards on your TastyIgniter website. It's completely free to get started, and there are no monthly fees; you only pay a small fee when you sell a gift card.
+With [Gift Up!](https://www.giftup.com/), you can sell and accept your own gift cards on your TastyIgniter website. It's
+completely free to get started, and there are no monthly fees; you only pay a small fee when you sell a gift card.
 
-Gift Up! makes it easy for your customers to buy gift cards from your website and social media platforms at any time, with your branding. They can pay with debit or credit cards, as well as alternative payment options such as Apple Pay and Google Pay.
+Gift Up! makes it easy for your customers to buy gift cards from your website and social media platforms at any time,
+with your branding. Customers can pay with debit or credit cards, as well as alternative payment options such as Apple
+Pay and Google Pay.
 
-Your customers can redeem their gift card against a TastyIgniter order.
+Gift Cards can be applied during TastyIgniter checkout.
 
 ### Features:
+
 - Customized gift cards with your branding
-- Simple gift card checkout on any TastyIgniter page
+- Simple Gift Up! checkout experience on any TastyIgniter page
 - Gift Cards delivered automatically through email
 - Accept the gift cards you sell anywhere, including in-store, through Gift Up! mobile apps, or during checkout.
 - A complete Gift Up! management dashboard.
