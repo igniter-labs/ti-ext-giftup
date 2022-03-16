@@ -19,8 +19,8 @@
       "code": "igniterlabs.giftup",
       "name": "Gift Up! Gift Cards",
       "icon": {
-        "class": "fas fa-gift",
-        "backgroundColor": "#fdc904",
+        "image": "icon.svg",
+        "backgroundColor": "#fc0",
         "color": "#000000"
       },
       "homepage": "https://tastyigniter.com/marketplace/item/igniterlabs-giftup"
