@@ -16,7 +16,7 @@ class Manager
 
     public $endpoint = 'https://api.giftup.app/';
 
-    protected static $responseCache;
+    protected static $responseCache = [];
 
     public function applyGiftCardCode(string $code)
     {
@@ -55,16 +55,13 @@ class Manager
 
     public function redeemGiftCard(Orders_model $order)
     {
-        if (!Settings::isConnected())
-            return;
-
         if (!$condition = Cart::conditions()->get('giftup'))
             return;
 
         if (!strlen($condition->getMetaData('code')))
             return;
 
-        if (!$order->isPaymentProcessed())
+        if ($order->isPaymentProcessed())
             throw new ApplicationException(lang('igniterlabs.giftup::default.alert_order_not_processed'));
 
         $payload = [
@@ -78,19 +75,22 @@ class Manager
         ];
 
         $uri = sprintf('gift-cards/%s/redeem', $condition->getMetaData('code'));
-        $response = $this->sendRequest('POST', $uri, $payload);
+        $response = $this->sendRequest('POST', $uri, [
+            'body' => json_encode($payload),
+        ]);
 
-        $order->logPaymentAttempt('Gift card redeemed successful', 1, $payload, $response->json());
+        if ($order->payment_method)
+            $order->logPaymentAttempt('Gift card redeemed successful', 1, $payload, $response);
     }
 
     public function fetchCompany()
     {
-        return $this->sendRequest('GET', 'company')->json();
+        return $this->sendRequest('GET', 'company');
     }
 
     public function listLocations()
     {
-        return $this->sendRequest('GET', 'locations')->json();
+        return $this->sendRequest('GET', 'locations');
     }
 
     public function fetchGiftCard(string $code)
@@ -98,7 +98,7 @@ class Manager
         if (array_key_exists($code, self::$responseCache))
             return self::$responseCache[$code];
 
-        return self::$responseCache[$code] = $this->sendRequest('GET', 'gift-cards/'.$code)->json();
+        return self::$responseCache[$code] = (object)$this->sendRequest('GET', 'gift-cards/'.$code);
     }
 
     protected function sendRequest($method, $uri, array $payload = [])
@@ -113,12 +113,19 @@ class Manager
             ];
 
             if (Settings::isStaging())
-                $headers['x-giftup-testmode'] = 'true';
+                $headers['x-giftup-testmode'] = TRUE;
 
-            return Http::withHeaders($headers)->send($method, $this->endpoint.'/'.$uri, $payload);
+            $request = Http::withHeaders($headers)->send($method, $this->endpoint.'/'.$uri, $payload);
+
+            if (!$request->ok()) {
+                throw new ApplicationException('Error while communicating with the giftup server '.json_encode($request->json()));
+            }
+
+            return $request->json();
         }
         catch (Exception $ex) {
             log_message('error', $ex);
+            throw $ex;
         }
     }
 }

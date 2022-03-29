@@ -16,7 +16,7 @@ class RedeemGiftCard extends CartCondition
 
     public function getLabel()
     {
-        return sprintf(lang($this->label), $this->getMetaData('code'));
+        return lang($this->label).' '.$this->getMetaData('code');
     }
 
     public function getValue()

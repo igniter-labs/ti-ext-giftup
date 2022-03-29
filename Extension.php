@@ -20,7 +20,7 @@ class Extension extends BaseExtension
                 return Manager::instance()->applyGiftCardCode($code);
         });
 
-        Event::listen('admin.order.paymentProcessed', function (Orders_model $order) {
+        Event::listen('igniter.checkout.beforePayment', function (Orders_model $order, $data) {
             if (Settings::isConnected())
                 Manager::instance()->redeemGiftCard($order);
         });
