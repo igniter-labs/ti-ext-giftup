@@ -20,19 +20,22 @@ class Manager
 
     public function applyGiftCardCode(string $code)
     {
-        if (!$condition = Cart::getCondition('giftup'))
-            return;
+        try {
+            if (!$condition = Cart::getCondition('giftup'))
+                return;// Get gift card by code
 
-        // Get gift card by code
-        $giftCardObj = $this->fetchGiftCard($code);
+            $giftCardObj = $this->fetchGiftCard($code);
 
-        $this->validateGiftCard($giftCardObj);
+            $this->validateGiftCard($giftCardObj);
 
-        $condition->setMetaData(['code' => $code]);
+            $condition->setMetaData(['code' => $code]);
 
-        Cart::loadCondition($condition);
+            Cart::loadCondition($condition);
 
-        return $condition;
+            return $condition;
+        }
+        catch (Exception $ex) {
+        }
     }
 
     public function validateGiftCard($giftCard)
