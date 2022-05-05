@@ -116,7 +116,7 @@ class Manager
             ];
 
             if (Settings::isStaging())
-                $headers['x-giftup-testmode'] = TRUE;
+                $headers['x-giftup-testmode'] = true;
 
             $request = Http::withHeaders($headers)->send($method, $this->endpoint.'/'.$uri, $payload);
 

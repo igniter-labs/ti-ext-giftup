@@ -8,7 +8,7 @@ use IgniterLabs\GiftUp\Classes\Manager;
 
 class RedeemGiftCard extends CartCondition
 {
-    public $removeable = TRUE;
+    public $removeable = true;
 
     public $priority = 200;
 
@@ -55,7 +55,7 @@ class RedeemGiftCard extends CartCondition
     public function beforeApply()
     {
         if (!$this->giftCardValue)
-            return FALSE;
+            return false;
     }
 
     public function getActions()

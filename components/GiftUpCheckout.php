@@ -82,25 +82,25 @@ class GiftUpCheckout extends BaseComponent
             'hideArtwork' => [
                 'label' => 'Whether to hide your artwork or not',
                 'type' => 'switch',
-                'default' => FALSE,
+                'default' => false,
                 'validationRule' => 'required|boolean',
             ],
             'hideGroups' => [
                 'label' => 'Hide all grouped items. This will leave un-grouped items and the custom value gift cards',
                 'type' => 'switch',
-                'default' => FALSE,
+                'default' => false,
                 'validationRule' => 'required|boolean',
             ],
             'hideUngroupedItems' => [
                 'label' => 'Hide all un-grouped items. This will leave all groups of items and the custom value gift cards (if enabled) only.',
                 'type' => 'switch',
-                'default' => FALSE,
+                'default' => false,
                 'validationRule' => 'required|boolean',
             ],
             'hideCustomValue' => [
                 'label' => 'Hide custom value gift cards',
                 'type' => 'switch',
-                'default' => FALSE,
+                'default' => false,
                 'validationRule' => 'required|boolean',
             ],
             'customValueAmount' => [
