@@ -2,11 +2,11 @@
 
 namespace IgniterLabs\GiftUp;
 
-use Admin\Models\Orders_model;
+use Igniter\Admin\Models\Order;
+use Igniter\System\Classes\BaseExtension;
 use IgniterLabs\GiftUp\Classes\Manager;
 use IgniterLabs\GiftUp\Models\Settings;
 use Illuminate\Support\Facades\Event;
-use System\Classes\BaseExtension;
 
 /**
  * GiftUp Extension Information File
@@ -20,7 +20,7 @@ class Extension extends BaseExtension
                 return Manager::instance()->applyGiftCardCode($code);
         });
 
-        Event::listen('igniter.checkout.beforePayment', function (Orders_model $order, $data) {
+        Event::listen('igniter.checkout.beforePayment', function (Order $order, $data) {
             if (Settings::isConnected())
                 Manager::instance()->redeemGiftCard($order);
         });

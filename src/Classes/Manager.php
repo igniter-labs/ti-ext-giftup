@@ -2,8 +2,8 @@
 
 namespace IgniterLabs\GiftUp\Classes;
 
-use Admin\Models\Orders_model;
 use Exception;
+use Igniter\Admin\Models\Order;
 use Igniter\Flame\Cart\Facades\Cart;
 use Igniter\Flame\Exception\ApplicationException;
 use Igniter\Flame\Traits\Singleton;
@@ -56,7 +56,7 @@ class Manager
             throw new ApplicationException(lang('igniterlabs.giftup::default.alert_gift_card_balance_low'));
     }
 
-    public function redeemGiftCard(Orders_model $order)
+    public function redeemGiftCard(Order $order)
     {
         if (!$condition = Cart::conditions()->get('giftup'))
             return;

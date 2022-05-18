@@ -2,9 +2,9 @@
 
 namespace IgniterLabs\GiftUp\Components;
 
+use Igniter\System\Classes\BaseComponent;
 use IgniterLabs\GiftUp\Classes\GiftUpOptions;
 use IgniterLabs\GiftUp\Models\Settings;
-use System\Classes\BaseComponent;
 
 class GiftUpCheckout extends BaseComponent
 {

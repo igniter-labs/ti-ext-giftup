@@ -1,59 +1,41 @@
 <?php
 
-namespace IgniterLabs\GiftUp\Models;
+return [
+    'form' => [
+        'toolbar' => [
+            'buttons' => [
+                'back' => [
+                    'label' => 'lang:admin::lang.button_icon_back',
+                    'class' => 'btn btn-outline-secondary',
+                    'href' => 'settings',
+                ],
+                'save' => [
+                    'label' => 'lang:admin::lang.button_save',
+                    'class' => 'btn btn-primary',
+                    'data-request' => 'onSave',
+                    'data-progress-indicator' => 'admin::lang.text_saving',
+                ],
+            ],
+        ],
+        'fields' => [
+            'info' => [
+                'type' => 'partial',
+                'path' => '$/igniterlabs/giftup/views/settings/info',
+            ],
+            'is_live' => [
+                'type' => 'radiotoggle',
+                'default' => 'staging',
+                'options' => [
+                    'staging' => 'Staging',
+                    'live' => 'Live',
+                ],
+            ],
+            'api_key' => [
+                'label' => 'lang:igniterlabs.giftup::default.label_api_key',
+                'type' => 'textarea',
+                'span' => 'left',
+            ],
 
-use Exception;
-use Igniter\Flame\Database\Model;
-use IgniterLabs\GiftUp\Classes\Manager;
-
-class Settings extends Model
-{
-    public $implement = [\System\Actions\SettingsModel::class];
-
-    // A unique code
-    public $settingsCode = 'igniterlabs_giftup_settings';
-
-    // Reference to field configuration
-    public $settingsFieldsConfig = 'settings';
-
-    public static function isConnected()
-    {
-        return self::isConfigured() && strlen(self::getCompanyId());
-    }
-
-    public static function getApiKey()
-    {
-        return self::get('api_key');
-    }
-
-    public static function isStaging()
-    {
-        return self::get('is_live') === 'staging';
-    }
-
-    public static function getMinimumValue()
-    {
-        return (int)self::get('minimum_value', 0);
-    }
-
-    public static function getCompanyId()
-    {
-        return array_get(self::get('company_info', []), 'id');
-    }
-
-    public function afterSave()
-    {
-        try {
-            $oldCompanyId = array_get($this->data, 'company_info.id');
-            $company = Manager::instance()->fetchCompany();
-            $companyId = array_get($company, 'id');
-
-            if (!$companyId || $oldCompanyId === $companyId)
-                return;
-
-            $this->set('company_info', $company);
-        }
-        catch (Exception $ex) {
-        }
-    }
-}
+        ],
+    ],
+];
