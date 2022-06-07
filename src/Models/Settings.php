@@ -45,7 +45,7 @@ class Settings extends Model
     {
         try {
             $oldCompanyId = array_get($this->data, 'company_info.id');
-            $company = Manager::instance()->fetchCompany();
+            $company = resolve(Manager::class)->fetchCompany();
             $companyId = array_get($company, 'id');
 
             if (!$companyId || $oldCompanyId === $companyId)

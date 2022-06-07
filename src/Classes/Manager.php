@@ -6,14 +6,11 @@ use Exception;
 use Igniter\Admin\Models\Order;
 use Igniter\Flame\Cart\Facades\Cart;
 use Igniter\Flame\Exception\ApplicationException;
-use Igniter\Flame\Traits\Singleton;
 use IgniterLabs\GiftUp\Models\Settings;
 use Illuminate\Support\Facades\Http;
 
 class Manager
 {
-    use Singleton;
-
     public $endpoint = 'https://api.giftup.app/';
 
     protected static $responseCache = [];

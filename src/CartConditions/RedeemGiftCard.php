@@ -34,7 +34,7 @@ class RedeemGiftCard extends CartCondition
             return;
 
         try {
-            $manager = Manager::instance();
+            $manager = resolve(Manager::class);
 
             // Get gift card by code
             $giftCard = $manager->fetchGiftCard($giftupCode);

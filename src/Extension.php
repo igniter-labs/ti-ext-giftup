@@ -13,16 +13,21 @@ use Illuminate\Support\Facades\Event;
  */
 class Extension extends BaseExtension
 {
+    public function register()
+    {
+        $this->app->singleton(Manager::class);
+    }
+
     public function boot()
     {
         Event::listen('igniter.cart.beforeApplyCoupon', function ($code) {
             if (Settings::isConnected())
-                return Manager::instance()->applyGiftCardCode($code);
+                return resolve(Manager::class)->applyGiftCardCode($code);
         });
 
         Event::listen('igniter.checkout.beforePayment', function (Order $order, $data) {
             if (Settings::isConnected())
-                Manager::instance()->redeemGiftCard($order);
+                resolve(Manager::class)->redeemGiftCard($order);
         });
     }
 
