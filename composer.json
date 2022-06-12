@@ -14,6 +14,9 @@
       "name": "Igniter Labs Team"
     }
   ],
+  "require": {
+    "tastyigniter/flame": "v4.x-dev"
+  },
   "autoload": {
     "psr-4": {
       "IgniterLabs\\GiftUp\\": "src/"
