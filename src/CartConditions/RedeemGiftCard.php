@@ -2,8 +2,8 @@
 
 namespace IgniterLabs\GiftUp\CartConditions;
 
-use Igniter\Flame\Cart\CartCondition;
-use Igniter\Flame\Cart\Facades\Cart;
+use Igniter\Cart\CartCondition;
+use Igniter\Cart\Facades\Cart;
 use IgniterLabs\GiftUp\Classes\Manager;
 
 class RedeemGiftCard extends CartCondition

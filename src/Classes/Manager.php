@@ -4,7 +4,7 @@ namespace IgniterLabs\GiftUp\Classes;
 
 use Exception;
 use Igniter\Admin\Models\Order;
-use Igniter\Flame\Cart\Facades\Cart;
+use Igniter\Cart\Facades\Cart;
 use Igniter\Flame\Exception\ApplicationException;
 use IgniterLabs\GiftUp\Models\Settings;
 use Illuminate\Support\Facades\Http;
