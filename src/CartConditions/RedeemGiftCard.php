@@ -30,8 +30,9 @@ class RedeemGiftCard extends CartCondition
 
     public function onLoad()
     {
-        if (!strlen($giftupCode = $this->getMetaData('code')))
+        if (!strlen($giftupCode = $this->getMetaData('code'))) {
             return;
+        }
 
         try {
             $manager = resolve(Manager::class);
@@ -45,8 +46,7 @@ class RedeemGiftCard extends CartCondition
 
             $this->giftCardValue = $cartSubtotal > $giftCard->remainingValue
                 ? $giftCard->remainingValue : $cartSubtotal;
-        }
-        catch (\Exception $ex) {
+        } catch (\Exception $ex) {
             flash()->alert($ex->getMessage())->now();
             $this->removeMetaData('code');
         }
@@ -54,8 +54,9 @@ class RedeemGiftCard extends CartCondition
 
     public function beforeApply()
     {
-        if (!$this->giftCardValue)
+        if (!$this->giftCardValue) {
             return false;
+        }
     }
 
     public function getActions()

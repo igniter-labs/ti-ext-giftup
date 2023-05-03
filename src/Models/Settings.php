@@ -48,12 +48,12 @@ class Settings extends Model
             $company = resolve(Manager::class)->fetchCompany();
             $companyId = array_get($company, 'id');
 
-            if (!$companyId || $oldCompanyId === $companyId)
+            if (!$companyId || $oldCompanyId === $companyId) {
                 return;
+            }
 
             $this->set('company_info', $company);
-        }
-        catch (Exception $ex) {
+        } catch (Exception $ex) {
         }
     }
 }

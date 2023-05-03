@@ -18,8 +18,9 @@ class Manager
     public function applyGiftCardCode(string $code)
     {
         try {
-            if (!$condition = Cart::getCondition('giftup'))
-                return;// Get gift card by code
+            if (!$condition = Cart::getCondition('giftup')) {
+                return;
+            }// Get gift card by code
 
             $giftCardObj = $this->fetchGiftCard($code);
 
@@ -30,39 +31,46 @@ class Manager
             Cart::loadCondition($condition);
 
             return $condition;
-        }
-        catch (Exception $ex) {
+        } catch (Exception $ex) {
         }
     }
 
     public function validateGiftCard($giftCard)
     {
-        if ($giftCard->backingType !== 'Currency')
+        if ($giftCard->backingType !== 'Currency') {
             throw new ApplicationException(lang('igniterlabs.giftup::default.alert_gift_card_invalid_type'));
+        }
 
-        if ($giftCard->hasExpired)
+        if ($giftCard->hasExpired) {
             throw new ApplicationException(lang('igniterlabs.giftup::default.alert_gift_card_expired'));
+        }
 
-        if ($giftCard->notYetValid)
+        if ($giftCard->notYetValid) {
             throw new ApplicationException(lang('igniterlabs.giftup::default.alert_gift_card_invalid'));
+        }
 
-        if (!$giftCard->canBeRedeemed)
+        if (!$giftCard->canBeRedeemed) {
             throw new ApplicationException(lang('igniterlabs.giftup::default.alert_gift_card_redeemed'));
+        }
 
-        if ($giftCard->remainingValue <= Settings::getMinimumValue())
+        if ($giftCard->remainingValue <= Settings::getMinimumValue()) {
             throw new ApplicationException(lang('igniterlabs.giftup::default.alert_gift_card_balance_low'));
+        }
     }
 
     public function redeemGiftCard(Order $order)
     {
-        if (!$condition = Cart::conditions()->get('giftup'))
+        if (!$condition = Cart::conditions()->get('giftup')) {
             return;
+        }
 
-        if (!strlen($condition->getMetaData('code')))
+        if (!strlen($condition->getMetaData('code'))) {
             return;
+        }
 
-        if ($order->isPaymentProcessed())
+        if ($order->isPaymentProcessed()) {
             throw new ApplicationException(lang('igniterlabs.giftup::default.alert_order_not_processed'));
+        }
 
         $payload = [
             'amount' => abs($condition->getValue()),
@@ -70,7 +78,7 @@ class Manager
             'reason' => sprintf(lang('igniterlabs.giftup::default.text_giftup_reason'), $order->order_id),
             'locationId' => null,
             'metadata' => [
-                "ExternalOrderId" => $order->order_id,
+                'ExternalOrderId' => $order->order_id,
             ],
         ];
 
@@ -79,8 +87,9 @@ class Manager
             'body' => json_encode($payload),
         ]);
 
-        if ($order->payment_method)
+        if ($order->payment_method) {
             $order->logPaymentAttempt('Gift card redeemed successful', 1, $payload, $response);
+        }
     }
 
     public function fetchCompany()
@@ -95,8 +104,9 @@ class Manager
 
     public function fetchGiftCard(string $code)
     {
-        if (array_key_exists($code, self::$responseCache))
+        if (array_key_exists($code, self::$responseCache)) {
             return self::$responseCache[$code];
+        }
 
         return self::$responseCache[$code] = (object)$this->sendRequest('GET', 'gift-cards/'.$code);
     }
@@ -104,16 +114,18 @@ class Manager
     protected function sendRequest($method, $uri, array $payload = [])
     {
         try {
-            if (!strlen($apiKey = Settings::getApiKey()))
+            if (!strlen($apiKey = Settings::getApiKey())) {
                 throw new Exception('Please connect your Gift Up! account to TastyIgniter in Settings > Gift Up!');
+            }
 
             $headers = [
                 'Authorization' => 'Bearer '.$apiKey,
                 'Content-Type' => 'application/json',
             ];
 
-            if (Settings::isStaging())
+            if (Settings::isStaging()) {
                 $headers['x-giftup-testmode'] = true;
+            }
 
             $request = Http::withHeaders($headers)->send($method, $this->endpoint.'/'.$uri, $payload);
 
@@ -122,9 +134,9 @@ class Manager
             }
 
             return $request->json();
-        }
-        catch (Exception $ex) {
+        } catch (Exception $ex) {
             log_message('error', $ex);
+
             throw $ex;
         }
     }
