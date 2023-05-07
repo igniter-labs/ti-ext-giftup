@@ -1,119 +1,34 @@
 parameters:
 	ignoreErrors:
 		-
-			message: "#^Access to an undefined property IgniterLabs\\\\GiftUp\\\\CartConditions\\\\RedeemGiftCard\\:\\:\\$calculatedValue\\.$#"
+			message: "#^Call to an undefined static method Igniter\\\\Cart\\\\Facades\\\\Cart\\:\\:content\\(\\)\\.$#"
 			count: 1
 			path: src/CartConditions/RedeemGiftCard.php
 
 		-
-			message: "#^Access to an undefined property IgniterLabs\\\\GiftUp\\\\CartConditions\\\\RedeemGiftCard\\:\\:\\$label\\.$#"
-			count: 1
-			path: src/CartConditions/RedeemGiftCard.php
-
-		-
-			message: "#^Call to an undefined method IgniterLabs\\\\GiftUp\\\\CartConditions\\\\RedeemGiftCard\\:\\:getMetaData\\(\\)\\.$#"
-			count: 2
-			path: src/CartConditions/RedeemGiftCard.php
-
-		-
-			message: "#^Call to an undefined method IgniterLabs\\\\GiftUp\\\\CartConditions\\\\RedeemGiftCard\\:\\:removeMetaData\\(\\)\\.$#"
-			count: 1
-			path: src/CartConditions/RedeemGiftCard.php
-
-		-
-			message: "#^Call to static method content\\(\\) on an unknown class Igniter\\\\Cart\\\\Facades\\\\Cart\\.$#"
-			count: 1
-			path: src/CartConditions/RedeemGiftCard.php
-
-		-
-			message: "#^Function flash not found\\.$#"
-			count: 1
-			path: src/CartConditions/RedeemGiftCard.php
-
-		-
-			message: "#^Function lang not found\\.$#"
-			count: 1
-			path: src/CartConditions/RedeemGiftCard.php
-
-		-
-			message: "#^Access to property \\$order_id on an unknown class Igniter\\\\Admin\\\\Models\\\\Order\\.$#"
+			message: "#^Access to an undefined property Igniter\\\\Admin\\\\Models\\\\Order\\:\\:\\$order_id\\.$#"
 			count: 2
 			path: src/Classes/Manager.php
 
 		-
-			message: "#^Access to property \\$payment_method on an unknown class Igniter\\\\Admin\\\\Models\\\\Order\\.$#"
+			message: "#^Access to an undefined property Igniter\\\\Admin\\\\Models\\\\Order\\:\\:\\$payment_method\\.$#"
 			count: 1
 			path: src/Classes/Manager.php
 
 		-
-			message: "#^Call to method isPaymentProcessed\\(\\) on an unknown class Igniter\\\\Admin\\\\Models\\\\Order\\.$#"
+			message: "#^Call to an undefined static method Igniter\\\\Cart\\\\Facades\\\\Cart\\:\\:conditions\\(\\)\\.$#"
 			count: 1
 			path: src/Classes/Manager.php
 
 		-
-			message: "#^Call to method logPaymentAttempt\\(\\) on an unknown class Igniter\\\\Admin\\\\Models\\\\Order\\.$#"
+			message: "#^Call to an undefined static method Igniter\\\\Cart\\\\Facades\\\\Cart\\:\\:getCondition\\(\\)\\.$#"
 			count: 1
 			path: src/Classes/Manager.php
 
 		-
-			message: "#^Call to static method conditions\\(\\) on an unknown class Igniter\\\\Cart\\\\Facades\\\\Cart\\.$#"
+			message: "#^Call to an undefined static method Igniter\\\\Cart\\\\Facades\\\\Cart\\:\\:loadCondition\\(\\)\\.$#"
 			count: 1
 			path: src/Classes/Manager.php
-
-		-
-			message: "#^Call to static method getCondition\\(\\) on an unknown class Igniter\\\\Cart\\\\Facades\\\\Cart\\.$#"
-			count: 1
-			path: src/Classes/Manager.php
-
-		-
-			message: "#^Call to static method loadCondition\\(\\) on an unknown class Igniter\\\\Cart\\\\Facades\\\\Cart\\.$#"
-			count: 1
-			path: src/Classes/Manager.php
-
-		-
-			message: "#^Function lang not found\\.$#"
-			count: 7
-			path: src/Classes/Manager.php
-
-		-
-			message: "#^Function log_message not found\\.$#"
-			count: 1
-			path: src/Classes/Manager.php
-
-		-
-			message: "#^Instantiated class Igniter\\\\Flame\\\\Exception\\\\ApplicationException not found\\.$#"
-			count: 7
-			path: src/Classes/Manager.php
-
-		-
-			message: "#^Parameter \\$order of method IgniterLabs\\\\GiftUp\\\\Classes\\\\Manager\\:\\:redeemGiftCard\\(\\) has invalid type Igniter\\\\Admin\\\\Models\\\\Order\\.$#"
-			count: 1
-			path: src/Classes/Manager.php
-
-		-
-			message: "#^Access to an undefined property IgniterLabs\\\\GiftUp\\\\Components\\\\GiftUpCheckout\\:\\:\\$controller\\.$#"
-			count: 2
-			path: src/Components/GiftUpCheckout.php
-
-		-
-			message: "#^Access to an undefined property IgniterLabs\\\\GiftUp\\\\Components\\\\GiftUpCheckout\\:\\:\\$page\\.$#"
-			count: 1
-			path: src/Components/GiftUpCheckout.php
-
-		-
-			message: "#^Call to an undefined method IgniterLabs\\\\GiftUp\\\\Components\\\\GiftUpCheckout\\:\\:property\\(\\)\\.$#"
-			count: 19
-			path: src/Components/GiftUpCheckout.php
-
-		-
-			message: "#^Access to an undefined property IgniterLabs\\\\GiftUp\\\\Extension\\:\\:\\$app\\.$#"
-			count: 1
-			path: src/Extension.php
-
-		-
-			message: "#^Parameter \\$order of anonymous function has invalid type Igniter\\\\Admin\\\\Models\\\\Order\\.$#"
-			count: 1
-			path: src/Extension.php
 
 		-
 			message: "#^Access to an undefined property IgniterLabs\\\\GiftUp\\\\Models\\\\Settings\\:\\:\\$data\\.$#"
@@ -133,14 +48,4 @@ parameters:
 		-
 			message: "#^Call to an undefined static method IgniterLabs\\\\GiftUp\\\\Models\\\\Settings\\:\\:isConfigured\\(\\)\\.$#"
 			count: 1
-			path: src/Models/Settings.php
-
-		-
-			message: "#^Class Igniter\\\\System\\\\Actions\\\\SettingsModel not found\\.$#"
-			count: 1
-			path: src/Models/Settings.php
-
-		-
-			message: "#^Function array_get not found\\.$#"
-			count: 3
 			path: src/Models/Settings.php
