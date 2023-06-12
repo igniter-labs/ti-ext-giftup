@@ -2,7 +2,7 @@
 
 namespace IgniterLabs\GiftUp;
 
-use Igniter\Admin\Models\Order;
+use Igniter\Cart\Models\Order;
 use Igniter\System\Classes\BaseExtension;
 use IgniterLabs\GiftUp\Classes\Manager;
 use IgniterLabs\GiftUp\Models\Settings;
