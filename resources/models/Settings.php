@@ -20,7 +20,7 @@ return [
         'fields' => [
             'info' => [
                 'type' => 'partial',
-                'path' => '$/igniterlabs/giftup/views/settings/info',
+                'path' => 'igniterlabs.giftup::settings.info',
             ],
             'is_live' => [
                 'type' => 'radiotoggle',
