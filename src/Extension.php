@@ -38,7 +38,7 @@ class Extension extends BaseExtension
         return [
             'IgniterLabs.GiftUp.ManageSettings' => [
                 'description' => 'lang:igniterlabs.giftup::default.help_permission',
-                'group' => 'module',
+                'group' => 'order',
             ],
         ];
     }
