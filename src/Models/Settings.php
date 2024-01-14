@@ -8,13 +8,13 @@ use IgniterLabs\GiftUp\Classes\Manager;
 
 class Settings extends Model
 {
-    public $implement = [\Igniter\System\Actions\SettingsModel::class];
+    public array $implement = [\Igniter\System\Actions\SettingsModel::class];
 
     // A unique code
-    public $settingsCode = 'igniterlabs_giftup_settings';
+    public string $settingsCode = 'igniterlabs_giftup_settings';
 
     // Reference to field configuration
-    public $settingsFieldsConfig = 'settings';
+    public string $settingsFieldsConfig = 'settings';
 
     public static function isConnected()
     {

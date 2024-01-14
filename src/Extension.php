@@ -33,7 +33,7 @@ class Extension extends BaseExtension
         });
     }
 
-    public function registerPermissions()
+    public function registerPermissions(): array
     {
         return [
             'IgniterLabs.GiftUp.ManageSettings' => [
@@ -43,7 +43,7 @@ class Extension extends BaseExtension
         ];
     }
 
-    public function registerSettings()
+    public function registerSettings(): array
     {
         return [
             'settings' => [
@@ -56,7 +56,7 @@ class Extension extends BaseExtension
         ];
     }
 
-    public function registerComponents()
+    public function registerComponents(): array
     {
         return [
             \IgniterLabs\GiftUp\Components\GiftUpCheckout::class => [

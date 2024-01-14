@@ -8,7 +8,7 @@ use IgniterLabs\GiftUp\Models\Settings;
 
 class GiftUpCheckout extends BaseComponent
 {
-    public function defineProperties()
+    public function defineProperties(): array
     {
         return [
             'companyId' => [
