@@ -41,7 +41,7 @@ class RedeemGiftCard extends CartCondition
 
             $manager->validateGiftCard($giftCard);
 
-            $cartSubtotal = Cart::content()->subtotalWithoutConditions();
+            $cartSubtotal = Cart::total();
 
             $this->giftCardValue = $cartSubtotal > $giftCard->remainingValue
                 ? $giftCard->remainingValue : $cartSubtotal;
