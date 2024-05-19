@@ -20,13 +20,13 @@ class Extension extends BaseExtension
 
     public function boot()
     {
-        Event::listen('igniter.cart.beforeApplyCoupon', function ($code) {
+        Event::listen('igniter.cart.beforeApplyCoupon', function($code) {
             if (Settings::isConnected()) {
                 return resolve(Manager::class)->applyGiftCardCode($code);
             }
         });
 
-        Event::listen('igniter.checkout.beforePayment', function (Order $order, $data) {
+        Event::listen('igniter.checkout.beforePayment', function(Order $order, $data) {
             if (Settings::isConnected()) {
                 resolve(Manager::class)->redeemGiftCard($order);
             }
