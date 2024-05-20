@@ -12,6 +12,8 @@ class RedeemGiftCard extends CartCondition
 
     public $priority = 200;
 
+    protected $giftCard;
+
     protected $giftCardValue = 0;
 
     public function getLabel()
@@ -41,7 +43,7 @@ class RedeemGiftCard extends CartCondition
 
             $manager->validateGiftCard($giftCard);
 
-            $this->giftCardValue = $giftCard->remainingValue;
+            $this->giftCard = $giftCard;
         } catch (\Exception $ex) {
             flash()->alert($ex->getMessage())->now();
             $this->removeMetaData('code');
@@ -50,7 +52,7 @@ class RedeemGiftCard extends CartCondition
 
     public function beforeApply()
     {
-        if (!$this->giftCardValue)
+        if (!$this->giftCard)
             return false;
     }
 
@@ -61,5 +63,12 @@ class RedeemGiftCard extends CartCondition
         ];
 
         return [$actions];
+    }
+
+    public function calculate($total)
+    {
+        $this->giftCardValue = min($total, $this->giftCard->remainingValue);
+
+        return parent::calculate($total);
     }
 }
