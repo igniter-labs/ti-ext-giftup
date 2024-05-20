@@ -20,10 +20,11 @@ class Manager
 
     public function applyGiftCardCode(string $code)
     {
-        try {
+        return rescue(function() use ($code) {
             if (!$condition = Cart::getCondition('giftup'))
-                return;// Get gift card by code
+                return;
 
+            // Get gift card by code
             $giftCardObj = $this->fetchGiftCard($code);
 
             $this->validateGiftCard($giftCardObj);
@@ -33,9 +34,7 @@ class Manager
             Cart::loadCondition($condition);
 
             return $condition;
-        }
-        catch (Exception $ex) {
-        }
+        });
     }
 
     public function validateGiftCard($giftCard)
@@ -61,11 +60,15 @@ class Manager
         if (!$condition = Cart::conditions()->get('giftup'))
             return;
 
-        if (!strlen($condition->getMetaData('code')))
+        if (!strlen($code = $condition->getMetaData('code')))
             return;
 
         if ($order->isPaymentProcessed())
             throw new ApplicationException(lang('igniterlabs.giftup::default.alert_order_not_processed'));
+
+        $giftCardObj = $this->fetchGiftCard($code);
+
+        $this->validateGiftCard($giftCardObj);
 
         $payload = [
             'amount' => abs($condition->getValue()),
@@ -84,6 +87,8 @@ class Manager
 
         if ($order->payment_method)
             $order->logPaymentAttempt('Gift card redeemed successful', 1, $payload, $response);
+
+        $condition->removeMetaData('code');
     }
 
     public function fetchCompany()
@@ -125,8 +130,7 @@ class Manager
             }
 
             return $request->json();
-        }
-        catch (Exception $ex) {
+        } catch (Exception $ex) {
             log_message('error', $ex);
             throw $ex;
         }
