@@ -17,7 +17,7 @@ Gift Cards can be applied during TastyIgniter checkout.
 
 ### Configuration
 
-- Go to **System > Settings > Gift Up! Settings** to enter your
+- Go to **Manage > Settings > Gift Up! Settings** to enter your
    API Key ([obtained from your Gift Up! account](https://giftup.com))
-- Enable the Gift Up! Cart Condition under **System > Settings > Cart Settings**
+- Enable the Gift Up! Cart Condition under **Manage > Settings > Cart Settings**
 - Add the `Gift Up!` component to any page on your website. This will render Gift Up! checkout enabling your customers to buy your gift cards.
