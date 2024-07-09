@@ -7,7 +7,7 @@ Pay and Google Pay.
 
 Gift Cards can be applied during TastyIgniter checkout.
 
-### Features:
+### Features
 
 - Customized gift cards with your branding
 - Simple Gift Up! checkout experience on any TastyIgniter page
