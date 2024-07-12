@@ -24,9 +24,7 @@ class RedeemGiftCard extends CartCondition
         return 0 - $this->calculatedValue;
     }
 
-    public function getModel()
-    {
-    }
+    public function getModel() {}
 
     public function onLoad()
     {
