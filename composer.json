@@ -15,13 +15,13 @@
     "giftcard"
   ],
   "require": {
-    "tastyigniter/core": "dev-master",
-    "tastyigniter/ti-ext-cart": "v4.x-dev as 4.0"
+    "tastyigniter/core": "^v4.0@beta",
+    "tastyigniter/ti-ext-cart": "^v4.0@beta"
   },
   "require-dev": {
     "laravel/pint": "^1.2",
     "larastan/larastan": "^2.4.0",
-    "sampoyigi/testbench": "^1.0",
+    "sampoyigi/testbench": "dev-main as 1.0",
     "pestphp/pest-plugin-laravel": "^2.0"
   },
   "autoload": {
@@ -60,5 +60,6 @@
     },
     "sort-packages": true
   },
-  "minimum-stability": "dev"
+  "minimum-stability": "beta",
+  "prefer-stable": true
 }
