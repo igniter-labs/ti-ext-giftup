@@ -8,9 +8,9 @@ use IgniterLabs\GiftUp\Classes\Manager;
 
 class RedeemGiftCard extends CartCondition
 {
-    public $removeable = true;
+    public bool $removeable = true;
 
-    public $priority = 200;
+    public ?int $priority = 200;
 
     protected $giftCardValue = 0;
 
