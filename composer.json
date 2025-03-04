@@ -1,64 +1,68 @@
 {
-  "name": "igniterlabs/ti-ext-giftup",
-  "type": "tastyigniter-package",
-  "description": "Sell and accept gift cards on your TastyIgniter website using Gift Up!",
-  "license": "MIT",
-  "authors": [
-    {
-      "name": "Igniter Labs Team"
-    }
-  ],
-  "keywords": [
-    "tastyigniter",
-    "giftup",
-    "gift-card",
-    "giftcard"
-  ],
-  "require": {
-    "tastyigniter/core": "^v4.0@beta",
-    "tastyigniter/ti-ext-cart": "^v4.0@beta"
-  },
-  "require-dev": {
-    "laravel/pint": "^1.2",
-    "larastan/larastan": "^2.4.0",
-    "sampoyigi/testbench": "dev-main as 1.0",
-    "pestphp/pest-plugin-laravel": "^2.0"
-  },
-  "autoload": {
-    "psr-4": {
-      "IgniterLabs\\GiftUp\\": "src/"
-    }
-  },
-  "autoload-dev": {
-    "psr-4": {
-      "IgniterLabs\\GiftUp\\Tests\\": "tests/"
-    }
-  },
-  "extra": {
-    "tastyigniter-extension": {
-      "code": "igniterlabs.giftup",
-      "name": "Gift Up! Gift Cards",
-      "icon": {
-        "image": "icon.svg",
-        "backgroundColor": "#fc0",
-        "color": "#000000"
-      },
-      "homepage": "https://tastyigniter.com/marketplace/item/igniterlabs-giftup"
-    }
-  },
-  "scripts": {
-    "test": "vendor/bin/pest",
-    "test-coverage": "vendor/bin/pest --coverage",
-    "format": "vendor/bin/pint",
-    "static": "vendor/bin/phpstan analyse --ansi --memory-limit 1056M"
-  },
-  "config": {
-    "allow-plugins": {
-      "pestphp/pest-plugin": true,
-      "php-http/discovery": true,
-      "composer/installers": true
+    "name": "igniterlabs/ti-ext-giftup",
+    "type": "tastyigniter-package",
+    "description": "Sell and accept gift cards on your TastyIgniter website using Gift Up!",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Igniter Labs Team"
+        }
+    ],
+    "keywords": [
+        "tastyigniter",
+        "giftup",
+        "gift-card",
+        "giftcard"
+    ],
+    "require": {
+        "tastyigniter/core": "^v4.0@beta",
+        "tastyigniter/ti-ext-cart": "^v4.0@beta"
     },
-    "sort-packages": true
-  },
-  "minimum-stability": "beta"
+    "require-dev": {
+        "laravel/pint": "^1.2",
+        "larastan/larastan": "^2.4.0",
+        "sampoyigi/testbench": "dev-main as 1.0",
+        "pestphp/pest-plugin-laravel": "^2.0"
+    },
+    "autoload": {
+        "psr-4": {
+            "IgniterLabs\\GiftUp\\": "src/"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "IgniterLabs\\GiftUp\\Tests\\": "tests/"
+        }
+    },
+    "extra": {
+        "tastyigniter-extension": {
+            "code": "igniterlabs.giftup",
+            "name": "Gift Up! Gift Cards",
+            "icon": {
+                "image": "icon.svg",
+                "backgroundColor": "#fc0",
+                "color": "#000000"
+            },
+            "homepage": "https://tastyigniter.com/marketplace/item/igniterlabs-giftup"
+        },
+        "branch-alias": {
+            "dev-master": "4.0.x-dev"
+        }
+    },
+    "minimum-stability": "dev",
+    "prefer-stable": true,
+    "config": {
+        "allow-plugins": {
+            "pestphp/pest-plugin": true,
+            "php-http/discovery": true,
+            "composer/installers": true
+        },
+        "sort-packages": true
+    },
+    "scripts": {
+        "test": "vendor/bin/pest",
+        "test-coverage": "vendor/bin/pest --coverage",
+        "format": "vendor/bin/pint",
+        "static": "vendor/bin/phpstan analyse --ansi --memory-limit 1056M"
+    }
 }
