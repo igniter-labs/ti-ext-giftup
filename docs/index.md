@@ -3,7 +3,7 @@
 You can install the extension via composer using the following command:
 
 ```bash
-composer require igniterlabs/ti-ext-giftup:"^4.0" -W
+composer require igniterlabs/ti-ext-giftup -W
 ```
 
 ## Getting started
