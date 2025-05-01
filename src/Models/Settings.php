@@ -1,14 +1,16 @@
 <?php
 
+declare(strict_types=1);
+
 namespace IgniterLabs\GiftUp\Models;
 
-use Exception;
 use Igniter\Flame\Database\Model;
+use Igniter\System\Actions\SettingsModel;
 use IgniterLabs\GiftUp\Classes\Manager;
 
 class Settings extends Model
 {
-    public array $implement = [\Igniter\System\Actions\SettingsModel::class];
+    public array $implement = [SettingsModel::class];
 
     // A unique code
     public string $settingsCode = 'igniterlabs_giftup_settings';
@@ -16,44 +18,41 @@ class Settings extends Model
     // Reference to field configuration
     public string $settingsFieldsConfig = 'settings';
 
-    public static function isConnected()
+    public static function isConnected(): bool
     {
-        return self::isConfigured() && strlen(self::getCompanyId());
+        return self::getApiKey() && self::getCompanyId();
     }
 
-    public static function getApiKey()
+    public static function getApiKey(): string
     {
-        return self::get('api_key');
+        return (string)self::get('api_key');
     }
 
-    public static function isStaging()
+    public static function isStaging(): bool
     {
         return self::get('is_live') === 'staging';
     }
 
-    public static function getMinimumValue()
+    public static function getMinimumValue(): int
     {
         return (int)self::get('minimum_value', 0);
     }
 
-    public static function getCompanyId()
+    public static function getCompanyId(): string
     {
-        return array_get(self::get('company_info', []), 'id');
+        return (string)array_get(self::get('company_info', []), 'id');
     }
 
-    public function afterSave()
+    protected function afterSave()
     {
-        try {
+        rescue(function(): void {
             $oldCompanyId = array_get($this->data, 'company_info.id');
             $company = resolve(Manager::class)->fetchCompany();
             $companyId = array_get($company, 'id');
 
-            if (!$companyId || $oldCompanyId === $companyId) {
-                return;
+            if ($companyId && $oldCompanyId !== $companyId) {
+                $this->set('company_info', $company);
             }
-
-            $this->set('company_info', $company);
-        } catch (Exception $ex) {
-        }
+        });
     }
 }

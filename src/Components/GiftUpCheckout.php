@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace IgniterLabs\GiftUp\Components;
 
 use Igniter\System\Classes\BaseComponent;
@@ -34,22 +36,22 @@ class GiftUpCheckout extends BaseComponent
                 'validationRule' => 'nullable|string',
             ],
             'purchaserName' => [
-                'label' => 'Purchaser\'s name',
+                'label' => "Purchaser's name",
                 'type' => 'text',
                 'validationRule' => 'nullable|string',
             ],
             'purchaserEmail' => [
-                'label' => 'Purchaser\'s email',
+                'label' => "Purchaser's email",
                 'type' => 'text',
                 'validationRule' => 'nullable|string',
             ],
             'recipientName' => [
-                'label' => 'Recipient\'s name',
+                'label' => "Recipient's name",
                 'type' => 'text',
                 'validationRule' => 'nullable|string',
             ],
             'recipientEmail' => [
-                'label' => 'Recipient\'s email',
+                'label' => "Recipient's email",
                 'type' => 'text',
                 'validationRule' => 'nullable|string',
             ],
@@ -111,7 +113,7 @@ class GiftUpCheckout extends BaseComponent
         ];
     }
 
-    public function onRun()
+    public function onRun(): void
     {
         $this->page['errorPage'] = $this->controller->pageUrl($this->property('errorPage'));
         $this->page['successPage'] = $this->controller->pageUrl($this->property('successPage'));
@@ -119,7 +121,7 @@ class GiftUpCheckout extends BaseComponent
         $this->page['giftUpOptions'] = $this->loadOptions();
     }
 
-    protected function loadOptions()
+    protected function loadOptions(): GiftUpOptions
     {
         return new GiftUpOptions([
             'companyId' => $this->property('companyId') ?: Settings::getCompanyId(),

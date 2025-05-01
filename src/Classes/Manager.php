@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace IgniterLabs\GiftUp\Classes;
 
 use Exception;
@@ -8,6 +10,7 @@ use Igniter\Cart\Models\Order;
 use Igniter\Flame\Exception\ApplicationException;
 use IgniterLabs\GiftUp\Models\Settings;
 use Illuminate\Support\Facades\Http;
+use Illuminate\Support\Facades\Log;
 
 class Manager
 {
@@ -19,9 +22,10 @@ class Manager
     {
         try {
             if (!$condition = Cart::getCondition('giftup')) {
-                return;
-            }// Get gift card by code
+                return null;
+            }
 
+            // Get gift card by code
             $giftCardObj = $this->fetchGiftCard($code);
 
             $this->validateGiftCard($giftCardObj);
@@ -32,10 +36,13 @@ class Manager
 
             return $condition;
         } catch (Exception $ex) {
+            Log::error($ex);
         }
+
+        return null;
     }
 
-    public function validateGiftCard($giftCard)
+    public function validateGiftCard($giftCard): void
     {
         if ($giftCard->backingType !== 'Currency') {
             throw new ApplicationException(lang('igniterlabs.giftup::default.alert_gift_card_invalid_type'));
@@ -58,13 +65,13 @@ class Manager
         }
     }
 
-    public function redeemGiftCard(Order $order)
+    public function redeemGiftCard(Order $order): void
     {
         if (!$condition = Cart::conditions()->get('giftup')) {
             return;
         }
 
-        if (!strlen($condition->getMetaData('code'))) {
+        if ((string)$condition->getMetaData('code') === '') {
             return;
         }
 
@@ -97,11 +104,6 @@ class Manager
         return $this->sendRequest('GET', 'company');
     }
 
-    public function listLocations()
-    {
-        return $this->sendRequest('GET', 'locations');
-    }
-
     public function fetchGiftCard(string $code)
     {
         if (array_key_exists($code, self::$responseCache)) {
@@ -111,11 +113,17 @@ class Manager
         return self::$responseCache[$code] = (object)$this->sendRequest('GET', 'gift-cards/'.$code);
     }
 
-    protected function sendRequest($method, $uri, array $payload = [])
+    public function clearInternalCache(): void
+    {
+        self::$responseCache = [];
+    }
+
+    protected function sendRequest(string $method, string $uri, array $payload = [])
     {
         try {
-            if (!strlen($apiKey = Settings::getApiKey())) {
-                throw new Exception('Please connect your Gift Up! account to TastyIgniter in Settings > Gift Up!');
+            $apiKey = (string)Settings::getApiKey();
+            if ($apiKey === '') {
+                throw new Exception(lang('igniterlabs.giftup::default.alert_missing_api_key'));
             }
 
             $headers = [
@@ -135,7 +143,7 @@ class Manager
 
             return $request->json();
         } catch (Exception $ex) {
-            log_message('error', $ex);
+            logger()->error($ex);
 
             throw $ex;
         }

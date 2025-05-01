@@ -1,10 +1,14 @@
 <?php
 
+declare(strict_types=1);
+
 namespace IgniterLabs\GiftUp\CartConditions;
 
+use Exception;
 use Igniter\Cart\CartCondition;
 use Igniter\Cart\Facades\Cart;
 use IgniterLabs\GiftUp\Classes\Manager;
+use Override;
 
 class RedeemGiftCard extends CartCondition
 {
@@ -14,11 +18,13 @@ class RedeemGiftCard extends CartCondition
 
     protected $giftCardValue = 0;
 
+    #[Override]
     public function getLabel()
     {
         return lang($this->label).' '.$this->getMetaData('code');
     }
 
+    #[Override]
     public function getValue()
     {
         return 0 - $this->calculatedValue;
@@ -26,9 +32,10 @@ class RedeemGiftCard extends CartCondition
 
     public function getModel() {}
 
-    public function onLoad()
+    public function onLoad(): void
     {
-        if (!strlen($giftupCode = $this->getMetaData('code'))) {
+        $giftupCode = (string)$this->getMetaData('code');
+        if ($giftupCode === '') {
             return;
         }
 
@@ -42,9 +49,8 @@ class RedeemGiftCard extends CartCondition
 
             $cartSubtotal = Cart::content()->subtotalWithoutConditions();
 
-            $this->giftCardValue = $cartSubtotal > $giftCard->remainingValue
-                ? $giftCard->remainingValue : $cartSubtotal;
-        } catch (\Exception $ex) {
+            $this->giftCardValue = min($cartSubtotal, $giftCard->remainingValue);
+        } catch (Exception $ex) {
             flash()->alert($ex->getMessage())->now();
             $this->removeMetaData('code');
         }
@@ -52,11 +58,10 @@ class RedeemGiftCard extends CartCondition
 
     public function beforeApply()
     {
-        if (!$this->giftCardValue) {
-            return false;
-        }
+        return $this->giftCardValue ? null : false;
     }
 
+    #[Override]
     public function getActions()
     {
         $actions = [

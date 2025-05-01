@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace IgniterLabs\GiftUp\Classes;
 
 class GiftUpOptions
