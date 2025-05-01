@@ -121,7 +121,7 @@ class Manager
     protected function sendRequest(string $method, string $uri, array $payload = [])
     {
         try {
-            $apiKey = (string)Settings::getApiKey();
+            $apiKey = Settings::getApiKey();
             if ($apiKey === '') {
                 throw new Exception(lang('igniterlabs.giftup::default.alert_missing_api_key'));
             }
