@@ -26,7 +26,7 @@ Gift Cards can be applied during TastyIgniter checkout.
 
 ## Documentation
 
-Documentation can be found on the [TastyIgniter documentation website](https://tastyigniter.com/docs/extensions/giftup).
+Documentation can be found on the [TastyIgniter documentation website](https://github.com/igniter-labs/ti-ext-giftup/blob/master/docs/index.md).
 
 ## Changelog
 
