@@ -5,15 +5,3 @@ parameters:
 			identifier: property.notFound
 			count: 1
 			path: src/Models/Settings.php
-
-		-
-			message: '#^Call to an undefined method IgniterLabs\\GiftUp\\Models\\Settings\:\:set\(\)\.$#'
-			identifier: method.notFound
-			count: 1
-			path: src/Models/Settings.php
-
-		-
-			message: '#^Call to an undefined static method IgniterLabs\\GiftUp\\Models\\Settings\:\:get\(\)\.$#'
-			identifier: staticMethod.notFound
-			count: 4
-			path: src/Models/Settings.php

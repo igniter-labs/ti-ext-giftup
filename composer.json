@@ -16,7 +16,7 @@
     ],
     "require": {
         "tastyigniter/core": "^v4.0",
-        "tastyigniter/ti-ext-cart": "4.x-dev"
+        "tastyigniter/ti-ext-cart": "^4.0"
     },
     "require-dev": {
         "laravel/pint": "^1.2",

@@ -8,6 +8,13 @@ use Igniter\Flame\Database\Model;
 use Igniter\System\Actions\SettingsModel;
 use IgniterLabs\GiftUp\Classes\Manager;
 
+/**
+ * Settings Model for GiftUp integration.
+ *
+ * @method static mixed get(string $key, mixed $default = null)
+ * @method static mixed set(string|array $key, mixed $value = null)
+ * @mixin SettingsModel
+ */
 class Settings extends Model
 {
     public array $implement = [SettingsModel::class];
@@ -30,17 +37,17 @@ class Settings extends Model
 
     public static function isStaging(): bool
     {
-        return self::get('is_live') === 'staging';
+        return (string)self::get('is_live') === 'staging';
     }
 
     public static function getMinimumValue(): int
     {
-        return (int)self::get('minimum_value', 0);
+        return (int)self::get('minimum_value', 0); // @phpstan-ignore-line arguments.count
     }
 
     public static function getCompanyId(): string
     {
-        return (string)array_get(self::get('company_info', []), 'id');
+        return (string)array_get(self::get('company_info', []), 'id'); // @phpstan-ignore-line arguments.count
     }
 
     protected function afterSave()
@@ -51,7 +58,7 @@ class Settings extends Model
             $companyId = array_get($company, 'id');
 
             if ($companyId && $oldCompanyId !== $companyId) {
-                $this->set('company_info', $company);
+                static::set('company_info', $company);
             }
         });
     }
