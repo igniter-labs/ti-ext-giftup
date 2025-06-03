@@ -22,4 +22,3 @@ composer require igniterlabs/ti-ext-giftup -W
 ## Usage
 
 Customers can redeem gift cards during checkout by entering the gift card code in the checkout page. The gift card amount will be deducted from the order total. If the gift card amount is greater than the order total, the remaining balance will be stored for future use. If the gift card amount is less than the order total, the customer will be prompted to pay the remaining balance using other payment methods.
-
