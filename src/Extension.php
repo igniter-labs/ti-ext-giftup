@@ -58,7 +58,7 @@ class Extension extends BaseExtension
             'settings' => [
                 'label' => 'lang:igniterlabs.giftup::default.text_settings',
                 'description' => 'lang:igniterlabs.giftup::default.help_settings',
-                'icon' => 'fa fa-gear',
+                'icon' => 'fa fa-gift',
                 'model' => Settings::class,
                 'permissions' => ['IgniterLabs.GiftUp.ManageSettings'],
             ],
