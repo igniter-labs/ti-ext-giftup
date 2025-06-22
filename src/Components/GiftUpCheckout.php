@@ -1,57 +1,59 @@
 <?php
 
+declare(strict_types=1);
+
 namespace IgniterLabs\GiftUp\Components;
 
+use Igniter\System\Classes\BaseComponent;
 use IgniterLabs\GiftUp\Classes\GiftUpOptions;
 use IgniterLabs\GiftUp\Models\Settings;
-use System\Classes\BaseComponent;
 
 class GiftUpCheckout extends BaseComponent
 {
-    public function defineProperties()
+    public function defineProperties(): array
     {
         return [
             'companyId' => [
                 'label' => 'Your company ID. Leave blank to use the default company ID',
                 'type' => 'text',
-                'validationRule' => 'string',
+                'validationRule' => 'nullable|string',
             ],
             'productId' => [
                 'label' => 'Product ID',
                 'type' => 'text',
-                'validationRule' => 'string',
+                'validationRule' => 'nullable|string',
             ],
             'groupId' => [
                 'label' => 'Group ID',
                 'type' => 'text',
-                'validationRule' => 'string',
+                'validationRule' => 'nullable|string',
             ],
             'language' => [
                 'label' => 'Force a specific language',
                 'type' => 'text',
                 'default' => 'en-GB',
                 'placeholder' => 'en-GB',
-                'validationRule' => 'string',
+                'validationRule' => 'nullable|string',
             ],
             'purchaserName' => [
-                'label' => 'Purchaser\'s name',
+                'label' => "Purchaser's name",
                 'type' => 'text',
-                'validationRule' => 'string',
+                'validationRule' => 'nullable|string',
             ],
             'purchaserEmail' => [
-                'label' => 'Purchaser\'s email',
+                'label' => "Purchaser's email",
                 'type' => 'text',
-                'validationRule' => 'string',
+                'validationRule' => 'nullable|string',
             ],
             'recipientName' => [
-                'label' => 'Recipient\'s name',
+                'label' => "Recipient's name",
                 'type' => 'text',
-                'validationRule' => 'string',
+                'validationRule' => 'nullable|string',
             ],
             'recipientEmail' => [
-                'label' => 'Recipient\'s email',
+                'label' => "Recipient's email",
                 'type' => 'text',
-                'validationRule' => 'string',
+                'validationRule' => 'nullable|string',
             ],
             'step' => [
                 'label' => 'The default checkout step to display',
@@ -77,7 +79,7 @@ class GiftUpCheckout extends BaseComponent
             'promoCode' => [
                 'label' => 'Automatically apply a promo code',
                 'type' => 'text',
-                'validationRule' => 'string',
+                'validationRule' => 'nullable|string',
             ],
             'hideArtwork' => [
                 'label' => 'Whether to hide your artwork or not',
@@ -106,12 +108,12 @@ class GiftUpCheckout extends BaseComponent
             'customValueAmount' => [
                 'label' => 'The custom value amount to display',
                 'type' => 'text',
-                'validationRule' => 'string',
+                'validationRule' => 'nullable|string',
             ],
         ];
     }
 
-    public function onRun()
+    public function onRun(): void
     {
         $this->page['errorPage'] = $this->controller->pageUrl($this->property('errorPage'));
         $this->page['successPage'] = $this->controller->pageUrl($this->property('successPage'));
@@ -119,7 +121,7 @@ class GiftUpCheckout extends BaseComponent
         $this->page['giftUpOptions'] = $this->loadOptions();
     }
 
-    protected function loadOptions()
+    protected function loadOptions(): GiftUpOptions
     {
         return new GiftUpOptions([
             'companyId' => $this->property('companyId') ?: Settings::getCompanyId(),

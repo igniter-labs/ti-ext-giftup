@@ -1,4 +1,4 @@
-<div class="alert text-left text-reset">
+<div class="bg-light mb-3 p-3 border rounded">
     @if ($formModel->isConnected())
         <h4><i class="fa fa-circle text-success"></i>&nbsp;&nbsp;Connected to Gift Up!</h4>
     @else

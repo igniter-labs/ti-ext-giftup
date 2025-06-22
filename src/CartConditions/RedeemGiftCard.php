@@ -1,50 +1,56 @@
 <?php
 
+declare(strict_types=1);
+
 namespace IgniterLabs\GiftUp\CartConditions;
 
-use Igniter\Flame\Cart\CartCondition;
-use Igniter\Flame\Cart\Facades\Cart;
+use Exception;
+use Igniter\Cart\CartCondition;
+use Igniter\Cart\Facades\Cart;
 use IgniterLabs\GiftUp\Classes\Manager;
+use Override;
 
 class RedeemGiftCard extends CartCondition
 {
-    public $removeable = true;
+    public bool $removeable = true;
 
-    public $priority = 200;
-
-    protected $giftCard;
+    public ?int $priority = 200;
 
     protected $giftCardValue = 0;
 
+    #[Override]
     public function getLabel()
     {
         return lang($this->label).' '.$this->getMetaData('code');
     }
 
+    #[Override]
     public function getValue()
     {
         return 0 - $this->calculatedValue;
     }
 
-    public function getModel()
-    {
-    }
+    public function getModel() {}
 
-    public function onLoad()
+    public function onLoad(): void
     {
-        if (!strlen($giftupCode = $this->getMetaData('code')))
+        $giftupCode = (string)$this->getMetaData('code');
+        if ($giftupCode === '') {
             return;
+        }
 
         try {
-            $manager = Manager::instance();
+            $manager = resolve(Manager::class);
 
             // Get gift card by code
             $giftCard = $manager->fetchGiftCard($giftupCode);
 
             $manager->validateGiftCard($giftCard);
 
-            $this->giftCard = $giftCard;
-        } catch (\Exception $ex) {
+            $cartSubtotal = Cart::content()->subtotalWithoutConditions();
+
+            $this->giftCardValue = min($cartSubtotal, $giftCard->remainingValue);
+        } catch (Exception $ex) {
             flash()->alert($ex->getMessage())->now();
             $this->removeMetaData('code');
         }
@@ -52,10 +58,10 @@ class RedeemGiftCard extends CartCondition
 
     public function beforeApply()
     {
-        if (!$this->giftCard)
-            return false;
+        return $this->giftCardValue ? null : false;
     }
 
+    #[Override]
     public function getActions()
     {
         $actions = [
@@ -63,12 +69,5 @@ class RedeemGiftCard extends CartCondition
         ];
 
         return [$actions];
-    }
-
-    public function calculate($total)
-    {
-        $this->giftCardValue = min($total, $this->giftCard->remainingValue);
-
-        return parent::calculate($total);
     }
 }

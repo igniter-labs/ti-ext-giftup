@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace IgniterLabs\GiftUp\Classes;
 
 class GiftUpOptions
@@ -41,8 +43,9 @@ class GiftUpOptions
     public function __construct(array $options)
     {
         foreach ($options as $key => $value) {
-            if (property_exists($this, $key))
+            if (property_exists($this, $key)) {
                 $this->$key = $value;
+            }
         }
     }
 }

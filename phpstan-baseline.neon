@@ -1,0 +1,7 @@
+parameters:
+	ignoreErrors:
+		-
+			message: '#^Access to an undefined property IgniterLabs\\GiftUp\\Models\\Settings\:\:\$data\.$#'
+			identifier: property.notFound
+			count: 1
+			path: src/Models/Settings.php
