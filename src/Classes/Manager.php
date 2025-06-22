@@ -21,7 +21,7 @@ class Manager
     public function applyGiftCardCode(string $code)
     {
         try {
-            if (!$condition = Cart::getCondition('giftup')) { // @phpstan-ignore-line booleanNot.alwaysFalse,arguments.type
+            if (!$condition = Cart::getCondition('giftup')) {
                 return null;
             }
 
