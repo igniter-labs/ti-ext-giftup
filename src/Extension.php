@@ -27,7 +27,7 @@ class Extension extends BaseExtension
     #[Override]
     public function boot(): void
     {
-        Event::listen('igniter.cart.beforeApplyCoupon', function($code) {
+        Event::listen('igniter.cart.beforeApplyCoupon', function(string $code) {
             if (Settings::isConnected()) {
                 return resolve(Manager::class)->applyGiftCardCode($code);
             }
