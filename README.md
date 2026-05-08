@@ -28,13 +28,9 @@ Gift Cards can be applied during TastyIgniter checkout.
 
 Documentation can be found on the [TastyIgniter documentation website](https://tastyigniter.com/docs/extensions/giftup).
 
-## Changelog
-
-Please see [CHANGELOG](https://github.com/igniter-labs/ti-ext-giftup/blob/master/CHANGELOG.md) for more information on what has changed recently.
-
 ## Reporting issues
 
-If you encounter a bug in this extension, please report it using the [Issue Tracker](https://github.com/igniter-labs/ti-ext-giftup/issues) on GitHub.
+If you encounter a bug in this extension, please report it using the [Issue Tracker](https://github.com/tastyigniter/TastyIgniter/issues) on GitHub.
 
 ## Contributing
 
@@ -46,4 +42,4 @@ For reporting security vulnerabilities, please see [our security policy](https:/
 
 ## License
 
-TastyIgniter User extension is open-source software licensed under the [MIT license](https://github.com/igniter-labs/ti-ext-giftup/blob/master/LICENSE.md).
+TastyIgniter GiftUp! extension is open-source software licensed under the [MIT license](https://github.com/igniter-labs/ti-ext-giftup/blob/master/LICENSE.md).
