@@ -19,13 +19,13 @@ class RedeemGiftCard extends CartCondition
     protected $giftCardValue = 0;
 
     #[Override]
-    public function getLabel()
+    public function getLabel(): string
     {
         return lang($this->label).' '.$this->getMetaData('code');
     }
 
     #[Override]
-    public function getValue()
+    public function getValue(): int|float
     {
         return 0 - $this->calculatedValue;
     }
@@ -56,13 +56,13 @@ class RedeemGiftCard extends CartCondition
         }
     }
 
-    public function beforeApply()
+    public function beforeApply(): ?false
     {
         return $this->giftCardValue ? null : false;
     }
 
     #[Override]
-    public function getActions()
+    public function getActions(): array
     {
         $actions = [
             'value' => 0 - $this->giftCardValue,

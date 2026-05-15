@@ -7,9 +7,11 @@ namespace IgniterLabs\GiftUp\Components;
 use Igniter\System\Classes\BaseComponent;
 use IgniterLabs\GiftUp\Classes\GiftUpOptions;
 use IgniterLabs\GiftUp\Models\Settings;
+use Override;
 
 class GiftUpCheckout extends BaseComponent
 {
+    #[Override]
     public function defineProperties(): array
     {
         return [
