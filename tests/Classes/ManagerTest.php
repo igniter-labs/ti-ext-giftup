@@ -77,7 +77,7 @@ it('throws an exception if the gift card code is invalid', function(): void {
     ]);
 
     Cart::shouldReceive('getCondition')->andReturn($redeemGiftCard)->once();
-    Log::partialMock()->shouldReceive('error')->atLeast(1);
+    Log::partialMock()->shouldReceive('error')->atLeast();
 
     (new Manager)->applyGiftCardCode($code);
 });
